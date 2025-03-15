@@ -7,6 +7,7 @@ import {
 
 import '@solana/wallet-adapter-react-ui/styles.css';
 import { Airdrop } from './components/AirDrop';
+import { MessageSignature } from './components/MessageSignature';
 
 
 
@@ -24,6 +25,9 @@ function App() {
           </div>
           <div className='flex justify-center relative'>
             <Airdrop />
+          </div>
+          <div className='flex justify-center relative'>
+            <MessageSignature />
           </div>
         </WalletModalProvider>
       </WalletProvider>
