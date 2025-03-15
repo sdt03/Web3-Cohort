@@ -14,15 +14,15 @@ function App() {
   
 
   return (
-    <div>
+    <div className='flex flex-col justify-center gap-y-5 items-center h-screen'>
     <ConnectionProvider endpoint="https://solana-devnet.g.alchemy.com/v2/mky5zGxdo0X_AyQYBcwfygXClc6YRVoh">
       <WalletProvider wallets={[]} autoConnect>
         <WalletModalProvider> 
-          <div className="flex space-between gap-3">
+          <div className="flex gap-3 justify-center">
             <WalletMultiButton />
             <WalletDisconnectButton />
           </div>
-          <div>
+          <div className='flex justify-center relative'>
             <Airdrop />
           </div>
         </WalletModalProvider>
