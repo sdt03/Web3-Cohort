@@ -20,7 +20,7 @@ export function MessageSignature() {
     }
 
     return (
-        <div className="gap-3">
+        <div className="text-white gap-3">
             <input 
                 type="text"
                 placeholder="Type a message"
