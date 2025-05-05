@@ -11,6 +11,7 @@ import { pack, TokenMetadata, createInitializeInstruction } from "@solana/spl-to
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { Keypair, SystemProgram, Transaction } from "@solana/web3.js";
 import { useState } from "react";
+import { Button } from "../ui/button";
 
 
 export function TokenLaunchPad(){
@@ -21,6 +22,7 @@ export function TokenLaunchPad(){
     const [amount, setAmount] = useState(0);
     const [url, setUrl] = useState("");
     const [symbol, setSymbol] = useState("");
+    const [name, setName] = useState("");
 
     async function createToken(){
         const keypair = Keypair.generate();
@@ -28,9 +30,9 @@ export function TokenLaunchPad(){
         const metadata: TokenMetadata = {
             updateAuthority: keypair.publicKey,
             mint: keypair.publicKey,
-            name: "DTcoin",
-            symbol: "OPOS",
-            uri: "https://raw.githubusercontent.com/solana-developers/opos-asset/main/assets/DeveloperPortal/metadata.json",
+            name: name,
+            symbol: symbol,
+            uri: url,
             additionalMetadata: [["description", "Only on Solana"]]
         };
 
@@ -85,16 +87,38 @@ export function TokenLaunchPad(){
         }
         
     }
-
-
     return (
         <div>
-            <div className="bg-black flex flex-col max-w-100">
-                <input className="border border-gray-500 p-3 m-3 text-white rounded-lg" onChange={e => setPubKey(e.target.value)} placeholder="Solana Public Key" type="text" />
-                <input className="border border-gray-500 p-3 m-3 text-white rounded-lg" onChange={e => setAmount(Number(e.target.value))} placeholder="Amount" type="number" />
-                <input className="border border-gray-500 p-3 m-3 text-white rounded-lg" onChange={e => setUrl(e.target.value)} placeholder="Enter url" type="text" />
-                <input className="border border-gray-500 p-3 m-3 text-white rounded-lg" onChange={e => setSymbol(e.target.value)} placeholder="Token Symbol" type="text" />
-                <button onClick={createToken} className="bg-white text-black p-3 rounded-lg cursor-pointer">Create Token</button>
+            <div className="flex flex-col justify-center items-center">
+                <div className="flex flex-col justify-center items-center bg-black p-5 gap-3 rounded-lg shadow-lg">
+                    <div>
+                        <h1 className="text-white font-semibold text-xl">Create a New Token</h1>
+                    </div>
+                    <div className="flex flex-col w-100 text-white gap-2">
+                        <input
+                            type="text"
+                            placeholder="Name of the Token"
+                            className="border border-bg-gray-500 p-2 rounded-lg"
+                            value={name}
+                            onChange={e => setName(e.target.value)}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Symbol"
+                            className="border border-bg-gray-500 p-2 rounded-lg"
+                            value={symbol}
+                            onChange={e => setSymbol(e.target.value)}
+                        />
+                        <input
+                            type="text"
+                            placeholder="URI"
+                            className="border border-bg-gray-500 p-2 rounded-lg"
+                            value={url}
+                            onChange={e => setUrl(e.target.value)}
+                        />
+                        <Button onClick={createToken} variant="primary" size="md" text="Create Token" />
+                    </div>
+                </div>
             </div>
         </div>
     )

@@ -6,15 +6,18 @@ import {
   WalletDisconnectButton
 } from "@solana/wallet-adapter-react-ui"
 import '@solana/wallet-adapter-react-ui/styles.css'
+import { CreateMint } from "./components/Createmint"
 function App() {
 
   return (
-    <div className="bg-black flex flex-col h-screen gap-3">
+    <div className="bg-gray-900 flex flex-col h-screen gap-4">
       <ConnectionProvider endpoint="https://solana-devnet.g.alchemy.com/v2/mky5zGxdo0X_AyQYBcwfygXClc6YRVoh">
       <WalletProvider wallets={[]} autoConnect>
         <WalletModalProvider>
           <WalletMultiButton></WalletMultiButton>
-          <TokenLaunchPad />
+        
+            <TokenLaunchPad />
+            <CreateMint />
         
         </WalletModalProvider>
       </WalletProvider>
